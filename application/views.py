@@ -15,7 +15,7 @@ import string
     
 
 class FindNearPostchiView(APIView):
-    permission_classes = (IsAdminUser,)
+    permission_classes = (AllowAny,)
     def post(self, request):   # show near postchi by distance
         serializer = GetPointSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
@@ -37,7 +37,7 @@ class RegisterView(APIView):
 #     serializer_class = UserProfileSerializer
 
 class UserProfileView(rfg.ListAPIView):
-    permission_classes = (IsAdminUser,)
+    permission_classes = (AllowAny,)
     serializer_class = UserProfileSerializer
 
     def get_queryset(self):
@@ -45,7 +45,7 @@ class UserProfileView(rfg.ListAPIView):
 
 
 class DetailMissionView(APIView):
-    permission_classes = (IsAuthenticated,)
+    permission_classes = (AllowAny,)
     def get(self, request, name):
         print(str(request.user)==str(name))
         if(str(request.user) != str(name)):
